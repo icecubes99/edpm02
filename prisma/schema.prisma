@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employees {
+  id String @id @default(uuid())
+  firstName String
+  middleName String
+  lastName String
+  barangay String
+  province String
+  Country String
+  zipCode Int
+  emailAddress String
+  contactNumber String
+  createdAt DateTime @default(now()) 
+  assignment  Assign_Designation[]
+} 
+
+enum Assignment_Status {
+  Active
+  Resigned
+  AWOL
+}
+
+
+enum Employee_Type { 
+  Regular
+  Contractual
+  Part_Time
+  Remote
+  Intern
+  Freelance
+}
+model Assign_Designation {
+  id String @id @default(uuid())
+  employee Employees @relation(fields: [employeeId], references: [id])
+  employeeId String
+  employeeType Employee_Type
+  assignmentStatus Assignment_Status
+  designation Designation @relation(fields: [designationId], references: [id])
+  designationId String
+}
+
+model Designation {
+  id String @id @default(uuid())
+  designationName String
+  status Status
+  department Department @relation(fields: [departmentId], references: [id])
+  departmentId String
+  assignDesignation Assign_Designation[]
+}
+
+model Department {
+  id String @id @default(uuid())
+  departmentName String
+  status Status
+  designation Designation[]
+}
+
+enum Status {
+  Active
+  Inactive
+}
