@@ -37,6 +37,7 @@ enum Employee_Type {
   Intern
   Freelance
 }
+
 model Assign_Designation {
   id String @id @default(uuid())
   employee Employees @relation(fields: [employeeId], references: [id])
