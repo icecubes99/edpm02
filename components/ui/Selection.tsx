@@ -16,7 +16,7 @@ const EmployeeTypeSelect = ({
 }: EmployeeTypeSelectProps) => {
   return (
     <select
-      className="w-full p-2 border border-gray-200"
+      className="w-[357px] p-2 border border-gray-200 bg-indigo-50"
       name={name}
       value={value}
       onChange={onChange}

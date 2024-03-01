@@ -43,13 +43,15 @@ const Home = async () => {
           <table className="border-stone-500 w-full border ">
             <thead>
               <tr className="text-black font-semibold text-lg ">
-                <th className="border px-10 py-2">FIRST NAME</th>
-                <th className="border px-10 py-2">LAST NAME</th>
-                <th className="border px-10 py-2">DESIGNATION</th>
-                <th className="border px-10 py-2">EMPLOYEE TYPE</th>
-                <th className="border px-10 py-2">STATUS</th>
-                <th className="border px-10 py-2">EDIT</th>
-                <th className="border px-10 py-2">DELETE</th>
+                <th className="border px-10 py-2  bg-indigo-50">FIRST NAME</th>
+                <th className="border px-10 py-2  bg-indigo-50">LAST NAME</th>
+                <th className="border px-10 py-2  bg-indigo-50">DESIGNATION</th>
+                <th className="border px-10 py-2 bg-indigo-50">
+                  EMPLOYEE TYPE
+                </th>
+                <th className="border px-10 py-2 bg-indigo-50">STATUS</th>
+                <th className="border px-10 py-2 bg-indigo-50">EDIT</th>
+                <th className="border px-10 py-2 bg-indigo-50">DELETE</th>
               </tr>
             </thead>
             <tbody>

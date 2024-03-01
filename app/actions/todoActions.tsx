@@ -14,11 +14,14 @@ export async function create(formData: FormData) {
   const middleName = formData.get("middleName") as string;
   const lastName = formData.get("lastName") as string;
   const barangay = formData.get("barangay") as string;
+  const street = formData.get("street") as string;
+  const city = formData.get("city") as string;
   const province = formData.get("province") as string;
   const country = formData.get("Country") as string;
   const zipCode = Number(formData.get("zipCode"));
   const emailAddress = formData.get("emailAddress") as string;
   const contactNumber = formData.get("contactNumber") as string;
+  const employeeSpecialId = formData.get("employeeSpecialId") as string;
   const employeeType = formData.get("employeeType") as Employee_Type;
   const assignmentStatus = formData.get(
     "assignmentStatus"
@@ -41,9 +44,12 @@ export async function create(formData: FormData) {
           },
         },
         barangay: barangay,
+        street: street,
+        city: city,
         province: province,
         Country: country,
         zipCode: zipCode,
+        employeeSpecialId: employeeSpecialId,
       },
     });
 

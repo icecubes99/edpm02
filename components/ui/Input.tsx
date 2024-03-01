@@ -5,13 +5,20 @@ interface InputProps {
   type: string;
   placeholder?: string;
   value?: string;
+  className?: string;
 }
 
-const Input = ({ name, type, placeholder, value }: InputProps) => {
+const Input = ({
+  name,
+  type,
+  placeholder,
+  value,
+  className = "",
+}: InputProps) => {
   return (
     <>
       <input
-        className="w-full p-2 border border-gray-200 "
+        className={`w-full p-2 border border-gray-200 bg-indigo-50 ${className}`}
         name={name}
         type={type}
         placeholder={placeholder}
