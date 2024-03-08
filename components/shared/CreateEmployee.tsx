@@ -1,38 +1,30 @@
+"use client";
 import Form from "../ui/Form";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 import { create } from "@/app/actions/todoActions";
 import { prisma } from "@/utils/prisma";
-import dynamic from "next/dynamic";
-import { Assignment_Status, Employee_Type } from "@prisma/client";
+
+import DesignationsSelection from "../ui/DesignationsSelection";
 import Selection from "../ui/Selection"; // Update this line
 
-async function getData() {
-  const data = await prisma.designation.findMany({
-    select: {
-      id: true,
-      designationName: true,
-    },
-  });
-  return data;
-}
+// async function getData() {
+//   const data = await prisma.designation.findMany({
+//     select: {
+//       id: true,
+//       designationName: true,
+//     },
+//   });
+//   return data;
+// }
 
 const CreateEmployee = async () => {
-  const data = await getData();
-  const etOptions = Object.entries(Employee_Type).map(([id, value]) => ({
-    id,
-    value,
-  }));
+  // const data = await getData();
 
-  const esOptions = Object.entries(Assignment_Status).map(([id, value]) => ({
-    id,
-    value,
-  }));
-
-  const designationOptions = data.map((designation) => ({
-    id: designation.id,
-    value: designation.designationName,
-  }));
+  // const designationOptions = data.map((designation) => ({
+  //   id: designation.id,
+  //   value: designation.designationName,
+  // }));
 
   return (
     <div className="text-lg font-semibold ">
@@ -120,15 +112,31 @@ const CreateEmployee = async () => {
         <div className="flex gap-x-24 ml-10 mt-10">
           <div className="flex flex-col gap-y-1">
             <h1>EMPLOYEE TYPE</h1>
-            <Selection name="employeeType" options={etOptions} />
+            <select
+              className="w-[357px] p-2 border border-gray-200 bg-indigo-50"
+              name="employeeType"
+            >
+              <option>Full Time</option>
+              <option>Part Time</option>
+              <option>Intern</option>
+              <option>Contractual</option>
+            </select>
           </div>
           <div className="flex flex-col gap-y-1">
             <h1>EMPLOYEE STATUS</h1>
-            <Selection name="assignmentStatus" options={esOptions} />
+            <select
+              className="w-[357px] p-2 border border-gray-200 bg-indigo-50"
+              name="assignmentStatus"
+            >
+              <option>Active</option>
+              <option>Resigned</option>
+              <option>AWOL</option>
+            </select>
           </div>
           <div className="flex flex-col gap-y-1">
             <h1>DESIGNATION</h1>
-            <Selection name="designationId" options={designationOptions} />
+            {/* <Selection name="designationId" options={designationOptions} /> */}
+            <DesignationsSelection name="designationId" />
           </div>
         </div>
 

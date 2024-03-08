@@ -14,8 +14,8 @@ model Employees {
   middleName String
   lastName String
   barangay String
-  street String?
-  city String?
+  street String
+  city String
   province String
   Country String
   zipCode Int
@@ -25,28 +25,12 @@ model Employees {
   assignment  Assign_Designation[]
 } 
 
-enum Assignment_Status {
-  Active
-  Resigned
-  AWOL
-}
-
-
-enum Employee_Type { 
-  Regular
-  Contractual
-  Part_Time
-  Remote
-  Intern
-  Freelance
-}
-
 model Assign_Designation {
   id String @id @default(uuid())
   employee Employees @relation(fields: [employeeId], references: [id])
-  employeeId String
-  employeeType Employee_Type
-  assignmentStatus Assignment_Status
+  employeeId String @unique
+  employeeType String
+  assignmentStatus String
   designation Designation @relation(fields: [designationId], references: [id])
   designationId String
 }
@@ -54,7 +38,7 @@ model Assign_Designation {
 model Designation {
   id String @id @default(uuid())
   designationName String
-  status Status
+  status String
   department Department @relation(fields: [departmentId], references: [id])
   departmentId String
   assignDesignation Assign_Designation[]
@@ -63,11 +47,11 @@ model Designation {
 model Department {
   id String @id @default(uuid())
   departmentName String
-  status Status
+  status String
   designation Designation[]
 }
 
-enum Status {
-  Active
-  Inactive
-}
+// enum Status {
+//   Active
+//   Inactive
+// }

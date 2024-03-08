@@ -3,13 +3,31 @@ import UnivHeader from "@/components/shared/UnivHeader";
 import Image from "next/image";
 import { prisma } from "@/utils/prisma";
 import React from "react";
+import { useState } from "react";
+import Button from "@/components/ui/Button";
+import DeleteEmployee from "@/components/ui/DeleteEmployee";
+
+import EditEmployeeDetails from "@/components/shared/EditEmployeeDetails";
+import Link from "next/link";
 
 async function getData() {
   const data = await prisma.employees.findMany({
     select: {
       id: true,
       firstName: true,
+      middleName: true,
+      barangay: true,
+      province: true,
+      street: true, // add this
+      city: true, // add this
+      Country: true,
+      zipCode: true,
+      emailAddress: true,
+      contactNumber: true,
+      createdAt: true,
       lastName: true,
+      employeeSpecialId: true,
+
       assignment: {
         select: {
           assignmentStatus: true,
@@ -17,6 +35,7 @@ async function getData() {
           designation: {
             select: {
               designationName: true,
+              id: true,
             },
           },
         },
@@ -39,7 +58,11 @@ const Home = async () => {
         <Sidebar />
         <div className="flex flex-col pt-2 pl-1 text-center">
           <h1 className="pt-10 text-3xl font-bold">EMPLOYEE MANAGEMENT</h1>
-          <h1 className="mb-16 pt-5 text-xl">View Employee Details Table</h1>
+          <Link href="/employeeDetails">
+            <h1 className="mb-16 pt-5 text-blue-700 hover:text-violet-600 text-xl">
+              View Employee Details Table
+            </h1>
+          </Link>
           <table className="border-stone-500 w-full border ">
             <thead>
               <tr className="text-black font-semibold text-lg ">
@@ -75,14 +98,10 @@ const Home = async () => {
                         {assignment.assignmentStatus}
                       </td>
                       <td className="border px-10 py-2  items-center ">
-                        <img
-                          src="./edit.svg"
-                          alt=""
-                          className="max-w-full max-h-full"
-                        />
+                        <EditEmployeeDetails employee={employee} />
                       </td>
                       <td className="border px-10 py-2 flex justify-center items-center">
-                        <img src="./delete.svg" alt="" />
+                        <DeleteEmployee id={employee.id} />
                       </td>
                     </React.Fragment>
                   ))}
