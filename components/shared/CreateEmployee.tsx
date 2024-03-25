@@ -7,24 +7,11 @@ import { prisma } from "@/utils/prisma";
 
 import DesignationsSelection from "../ui/DesignationsSelection";
 import Selection from "../ui/Selection"; // Update this line
+import CreateEmployeeWithApi from "@/components/shared/CreateEmployeeWithApi";
 
-// async function getData() {
-//   const data = await prisma.designation.findMany({
-//     select: {
-//       id: true,
-//       designationName: true,
-//     },
-//   });
-//   return data;
-// }
 
 const CreateEmployee = async () => {
-  // const data = await getData();
 
-  // const designationOptions = data.map((designation) => ({
-  //   id: designation.id,
-  //   value: designation.designationName,
-  // }));
 
   return (
     <div className="text-lg font-semibold ">
@@ -136,7 +123,7 @@ const CreateEmployee = async () => {
           <div className="flex flex-col gap-y-1">
             <h1>DESIGNATION</h1>
             {/* <Selection name="designationId" options={designationOptions} /> */}
-            <DesignationsSelection name="designationId" />
+            {/* <DesignationsSelection name="designationId" /> */}
           </div>
         </div>
 

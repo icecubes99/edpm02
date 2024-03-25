@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 interface InputProps {
   name: string;
@@ -6,6 +6,7 @@ interface InputProps {
   placeholder?: string;
   value?: string;
   className?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({

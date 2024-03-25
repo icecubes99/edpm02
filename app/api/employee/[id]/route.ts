@@ -46,7 +46,15 @@ export async function PUT(
 
   const updated = await prisma.employees.update({
     where: { id },
-    data: json,
+    data: {
+      ...json,
+      assignment: {
+        update: {
+          where: { employeeId: id },
+          data: json.assignment,
+        },
+      },
+    },
   });
   return NextResponse.json(updated);
 }

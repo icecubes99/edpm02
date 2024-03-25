@@ -18,11 +18,11 @@ const Sidebar = () => {
 
       <Link href="/addEmployee">
         <div className="flex gap-x-3 pt-8 pb-8 pl-2 text-sm  font-bold font hover:bg-violet-200 hover:rounded-sm">
-          <SidebarIcon />
+          <img src="./add.svg" alt="" />
           <h1>ADD NEW EMPLOYEES</h1>
         </div>
       </Link>
-
+      {/* 
       <Link href="/editDesignation">
         <div className="flex gap-x-3 pt-8 pb-8 pl-2 text-sm  font-bold font hover:bg-violet-200 hover:rounded-sm">
           <SidebarIcon />
@@ -35,7 +35,7 @@ const Sidebar = () => {
           <SidebarIcon />
           <h1>EDIT DEPARTMENTS</h1>
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 };

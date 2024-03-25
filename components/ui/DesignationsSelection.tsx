@@ -5,7 +5,12 @@ type Designation = {
   designationName: string;
 };
 
-const DesignationsSelection = ({ name }: { name: string }) => {
+type DesignationsSelectionProps = {
+  name: string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+const DesignationsSelection = ({ name, onChange }: DesignationsSelectionProps) => {
   const [designations, setDesignations] = useState<Designation[]>([]);
 
   const makeApiCall = async () => {
@@ -25,7 +30,9 @@ const DesignationsSelection = ({ name }: { name: string }) => {
     <select
       className="w-[357px] p-2 border border-gray-200 bg-indigo-50"
       name={name}
+      onChange={onChange}
     >
+      <option value="">Select a designation</option>
       {designations.map((designation) => (
         <option key={designation.id} value={designation.id}>
           {designation.designationName}

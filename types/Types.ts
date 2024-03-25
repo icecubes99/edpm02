@@ -1,54 +1,69 @@
-// EmployeesType.ts
-
-export enum AssignmentStatus {
-  Active = "Active",
-  Resigned = "Resigned",
-  AWOL = "AWOL",
+export interface Employee {
+  employeeSpecialId: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  barangay: string;
+  street: string;
+  city: string;
+  province: string;
+  country: string;
+  zipCode: number;
+  emailAddress: string;
+  contactNumber: string;
 }
 
-export enum EmployeeType {
-  Regular = "Regular",
-  Contractual = "Contractual",
-  Part_Time = "Part_Time",
-  Remote = "Remote",
-  Intern = "Intern",
-  Freelance = "Freelance",
-}
-
-export enum Status {
-  Active = "Active",
-  Inactive = "Inactive",
+export interface Assign_Designation {
+  employee: Employee;
+  employeeType: string;
+  assignmentStatus: string;
+  designation: Designation;
 }
 
 export interface Designation {
-  id: string;
   designationName: string;
-  status: Status;
-  departmentId: string;
+  status: string;
+  department: Department
 }
 
-export interface AssignDesignation {
-  id: string;
-  employeeId: string;
-  employeeType: EmployeeType;
-  assignmentStatus: AssignmentStatus;
-  designationId: string;
+export interface Department {
+  departmentName: string;
+  status: string;
 }
 
-export interface Employee {
+export interface EmployeeFormProps {
   id: string;
   employeeSpecialId: string;
   firstName: string;
   middleName: string;
   lastName: string;
   barangay: string;
-  street?: string;
-  city?: string | null;
+  street: string;
+  city: string;
   province: string;
-  Country: string;
+  country: string;
   zipCode: number;
   emailAddress: string;
   contactNumber: string;
-  createdAt: Date;
-  assignment: AssignDesignation[];
+  setFirstName: (value: string) => void;
+  setMiddleName: (value: string) => void;
+  setLastName: (value: string) => void;
+  setBarangay: (value: string) => void;
+  setStreet: (value: string) => void;
+  setCity: (value: string) => void;
+  setProvince: (value: string) => void;
+  setCountry: (value: string) => void;
+  setZipCode: (value: number) => void;
+  setEmailAddress: (value: string) => void;
+  setContactNumber: (value: string) => void;
+}
+
+export interface ErrorModalProps {
+  show: boolean;
+  message: string;
+}
+
+export interface SuccessModalProps {
+  show: boolean;
+  message: string;
 }

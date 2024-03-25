@@ -22,7 +22,7 @@ export async function create(formData: FormData) {
   const designationId = formData.get("designationId") as string;
 
   try {
-    await prisma.employees.create({
+    const createdEmployee = await prisma.employees.create({
       data: {
         firstName: firstName,
         emailAddress: emailAddress,
@@ -45,7 +45,7 @@ export async function create(formData: FormData) {
         employeeSpecialId: employeeSpecialId,
       },
     });
-
+    console.log(createdEmployee);
     revalidatePath("/");
     return true; // Return true if the operation was successful
   } catch (error) {
@@ -183,9 +183,14 @@ export async function editEmployeeDet(formData: FormData) {
 
     console.log("Data updated successfully", updatedEmployee);
     revalidatePath("/");
+
     return true;
   } catch (error) {
     console.error("Data update failed", error);
     return Promise.resolve(false);
+  } finally {
+    if (typeof window !== "undefined") {
+      window.location.reload();
+    }
   }
 }

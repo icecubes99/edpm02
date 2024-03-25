@@ -10,7 +10,11 @@ const DeleteEmployee = ({ id }: { id: string }) => {
     if (!response.ok) {
       // Handle error
       console.error("Failed to delete employee");
-      return;
+      return (
+        <div>
+          <h1>Failed to delete employee</h1>
+        </div>
+      );
     }
 
     // Handle success
