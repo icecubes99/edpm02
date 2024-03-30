@@ -11,3 +11,17 @@ export async function GET(
   });
   return NextResponse.json(designation);
 }
+
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id;
+  const json = await request.json();
+
+  const updated = await prisma.assign_Designation.update({
+    where: { id },
+    data: json
+  });
+  return NextResponse.json(updated);
+}

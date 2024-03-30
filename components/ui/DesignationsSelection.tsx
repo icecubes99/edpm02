@@ -8,9 +8,10 @@ type Designation = {
 type DesignationsSelectionProps = {
   name: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  value?: string;
 };
 
-const DesignationsSelection = ({ name, onChange }: DesignationsSelectionProps) => {
+const DesignationsSelection = ({ name, value, onChange }: DesignationsSelectionProps) => {
   const [designations, setDesignations] = useState<Designation[]>([]);
 
   const makeApiCall = async () => {
@@ -30,6 +31,7 @@ const DesignationsSelection = ({ name, onChange }: DesignationsSelectionProps) =
     <select
       className="w-[357px] p-2 border border-gray-200 bg-indigo-50"
       name={name}
+      value={value}
       onChange={onChange}
     >
       <option value="">Select a designation</option>

@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import TableHeader from "@/components/shared/TableHeader";
 import EditEmployeeDetails from "@/components/shared/EditEmployeeDetails";
 import DeleteEmployee from "../ui/DeleteEmployee";
+import Link from "next/link";
 
 interface EmployeeData {
   id: string;
@@ -80,6 +81,7 @@ const ShowEmployeeDetails = () => {
                 </th>
                 <th className="border px-10 py-2 bg-indigo-50">STATUS</th>
                 <th className="border px-10 py-2 bg-indigo-50">EDIT</th>
+                <th className="border px-10 py-2 bg-indigo-50">LEAVE</th>
                 <th className="border px-10 py-2 bg-indigo-50">DELETE</th>
               </tr>
             </thead>
@@ -101,8 +103,15 @@ const ShowEmployeeDetails = () => {
                   <td className="border px-10 py-2 text-center">
                     {employee.assignment[0]?.employeeType}
                   </td>
-                  <td className="border px-10 py-2  items-center ">
-                    <EditEmployeeDetails employee={employee} />
+                  <td className="border px-10 py-2 items-center ">
+                    <div className="text-blue-500 hover:text-violet-600 ">
+                      <Link href={`/editEmployee/${employee.id}`}>Edit</Link>
+                    </div>
+                  </td>
+                  <td className="border px-10 py-2 items-center ">
+                    <div className="text-blue-500 hover:text-violet-600 ">
+                      <Link href={`/addLeave/${employee.id}`}>Add Leave</Link>
+                    </div>
                   </td>
                   <td className="border px-10 py-2 flex justify-center items-center">
                     <DeleteEmployee id={employee.id} />

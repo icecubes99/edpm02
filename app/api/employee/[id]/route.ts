@@ -6,34 +6,47 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const id = params.id;
+
   const employee = await prisma.employees.findUnique({
     where: { id },
     include: {
       assignment: {
         include: {
           designation: true,
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   // Check if employee and designation exist
   if (
-    !employee ||
-    !employee.assignment ||
-    !employee.assignment[0].designation
+    !employee //||
+    // !employee.assignment ||
+    // !employee.assignment[0].designation
   ) {
     return NextResponse.json({ error: "Employee or designation not found" });
   }
 
-  const designationName = employee.assignment[0].designation.designationName;
-  const assignDesignationId = employee.assignment[0].id;
-  const designationId = employee.assignment[0].designation.id;
-
   return NextResponse.json({
-    designationName,
-    assignDesignationId,
-    designationId,
+    id: employee.id,
+    employeeSpecialId: employee.employeeSpecialId,
+    firstName: employee.firstName,
+    middleName: employee.middleName,
+    lastName: employee.lastName,
+    barangay: employee.barangay,
+    street: employee.street,
+    city: employee.city,
+    province: employee.province,
+    Country: employee.Country,
+    zipCode: employee.zipCode,
+    emailAddress: employee.emailAddress,
+    contactNumber: employee.contactNumber,
+    createdAt: employee.createdAt,
+    assignment: employee.assignment,
+    employeeType: employee.assignment && employee.assignment[0] ? employee.assignment[0].employeeType : null,
+    designationName: employee.assignment && employee.assignment[0] ? employee.assignment[0].designation.designationName : null,
+    assignmentStatus: employee.assignment && employee.assignment[0] ? employee.assignment[0].assignmentStatus : null,
+    assignmentId: employee.assignment && employee.assignment[0] ? employee.assignment[0].id : null
   });
 }
 
@@ -46,15 +59,7 @@ export async function PUT(
 
   const updated = await prisma.employees.update({
     where: { id },
-    data: {
-      ...json,
-      assignment: {
-        update: {
-          where: { employeeId: id },
-          data: json.assignment,
-        },
-      },
-    },
+    data: json
   });
   return NextResponse.json(updated);
 }

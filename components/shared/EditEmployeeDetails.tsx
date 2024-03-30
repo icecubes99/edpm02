@@ -203,7 +203,7 @@ const EditEmployeeDetails = ({ employee }: { employee: EmployeeData }) => {
           <div className="flex gap-x-24 mt-2">
             <div className="flex flex-col gap-y-1">
               <h1>DESIGNATION</h1>
-              <DesignationsSelection name="newDesignationId" />
+              {/* <DesignationsSelection name="newDesignationId" /> */}
             </div>
           </div>
 

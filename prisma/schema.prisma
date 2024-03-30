@@ -23,6 +23,8 @@ model Employees {
   contactNumber String
   createdAt DateTime @default(now()) 
   assignment  Assign_Designation[]
+  leaves Leaves[]
+  signatories Signatories[]
 } 
 
 model Assign_Designation {
@@ -51,7 +53,22 @@ model Department {
   designation Designation[]
 }
 
-// enum Status {
-//   Active
-//   Inactive
-// }
+model Leaves {
+  id String @id @default(uuid())
+  employee Employees @relation(fields: [employeeId], references: [id])
+  employeeId String
+  leaveType String
+  startDate DateTime
+  endDate DateTime
+  createdAt DateTime @default(now())
+  signatories Signatories[]
+}
+
+model Signatories {
+  id String @id @default(uuid())
+  approvalStatus String
+  approvedBy Employees @relation(fields: [approvedById], references: [id])
+  approvedById String
+  leave Leaves @relation(fields: [leaveId], references: [id])
+  leaveId String
+}

@@ -14,7 +14,6 @@ export async function GET(request: Request) {
   console.log(employees);
   return NextResponse.json(employees);
 }
-
 export async function POST(request: Request) {
   const json = await request.json();
 
