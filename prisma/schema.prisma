@@ -24,7 +24,10 @@ model Employees {
   createdAt DateTime @default(now()) 
   assignment  Assign_Designation[]
   leaves Leaves[]
-  signatories Signatories[]
+  employeeSignatory Signatories[] @relation("employeeSignatory")
+  higherSuperiorSignatory Signatories[] @relation("higherSuperiorSignatory")
+  payroll Payroll[]
+
 } 
 
 model Assign_Designation {
@@ -58,17 +61,56 @@ model Leaves {
   employee Employees @relation(fields: [employeeId], references: [id])
   employeeId String
   leaveType String
+  status String @default("Pending")
   startDate DateTime
   endDate DateTime
   createdAt DateTime @default(now())
-  signatories Signatories[]
 }
 
 model Signatories {
   id String @id @default(uuid())
-  approvalStatus String
-  approvedBy Employees @relation(fields: [approvedById], references: [id])
-  approvedById String
-  leave Leaves @relation(fields: [leaveId], references: [id])
-  leaveId String
+  employee Employees @relation("employeeSignatory", fields: [employeeId], references: [id])
+  employeeId String
+  higherSuperior Employees @relation("higherSuperiorSignatory", fields: [higherSuperiorId], references: [id])
+  higherSuperiorId String
+  status String
+}
+
+model Payroll {
+  id String @id @default(uuid())
+  employee Employees @relation(fields: [employeeId], references: [id])
+  employeeId String
+  periodStart DateTime
+  periodEnd DateTime
+  pay Float
+  createdAt DateTime @default(now())
+  additionalEarnings AdditionalEarnings[]
+  deductions Deductions[]
+  governmentContributions GovernmentContributions[]
+}
+
+model GovernmentContributions {
+  id String @id @default(uuid())
+  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payrollId String
+  governmnentContribution String
+  amount Float
+  createdAt DateTime @default(now())
+}
+
+model AdditionalEarnings {
+  id String @id @default(uuid())
+  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payrollId String
+  typeOfEarnings String
+  amount Float
+  createdAt DateTime @default(now())
+}
+model Deductions {
+  id String @id @default(uuid())
+  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payrollId String
+  typeOfDeductions String
+  amount Float
+  createdAt DateTime @default(now())
 }

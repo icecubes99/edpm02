@@ -1,13 +1,6 @@
 "use client";
-import Sidebar from "@/components/shared/Sidebar";
-import UnivHeader from "@/components/shared/UnivHeader";
-import Image from "next/image";
-import { prisma } from "@/utils/prisma";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
-import TableHeader from "@/components/shared/TableHeader";
-import EditEmployeeDetails from "@/components/shared/EditEmployeeDetails";
 import DeleteEmployee from "../ui/DeleteEmployee";
 import Link from "next/link";
 

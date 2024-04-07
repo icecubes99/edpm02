@@ -1,13 +1,7 @@
 "use client";
-import Sidebar from "@/components/shared/Sidebar";
-import UnivHeader from "@/components/shared/UnivHeader";
-import Image from "next/image";
-import { prisma } from "@/utils/prisma";
+import Link from "next/link";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
-import TableHeader from "@/components/shared/TableHeader";
-import EditEmployeeDetails from "@/components/shared/EditEmployeeDetails";
 
 interface EmployeeData {
   id: string;
@@ -146,7 +140,9 @@ const ShowEmployeeDetails = () => {
                     {employee.assignment[0]?.designation?.designationName}
                   </td>
                   <td className="border px-10 py-2  items-center ">
-                    <EditEmployeeDetails employee={employee} />
+                    <div className="text-blue-500 hover:text-violet-600 ">
+                      <Link href={`/editEmployee/${employee.id}`}>Edit</Link>
+                    </div>
                   </td>
                 </tr>
               ))}

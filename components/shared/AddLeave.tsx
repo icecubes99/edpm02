@@ -30,6 +30,8 @@ const AddLeave = ({ params }: { params: { id: string } }) => {
         console.log(formData);
     }
 
+
+    // const [startDate, setStartDate] = useState<Date>()
     const handleDateChange = (date: string | Moment, name: string) => {
         let dateString: string;
 

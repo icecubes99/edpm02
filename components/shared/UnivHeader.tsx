@@ -7,7 +7,8 @@ const UnivHeader = () => {
       <div className="p-6 pl-10 text-xl font-bold w-[20%] bg-indigo-50">
         <Link href="/">KUPLER INDUSTRIES</Link>
       </div>
-      <div className="p-6 text-lg font-semibold">ADMINISTRATOR</div>
+      <Link href="/administrator">
+        <div className="p-6 text-lg font-semibold hover:text-purple-600">ADMINISTRATOR</div> </Link>
     </div>
   );
 };
